@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: tomcat-deploy-green
+  labels:
+    app: tomcat-deploy-green
+spec:
+  selector:
+    matchLabels:
+      app: tomcat-pod-green
+  replicas: 2
+  template:
+    metadata:
+      name: tomcat-pod-green
+      labels: 
+        app: tomcat-pod-green
+    spec:
+      containers:
+      - name: tomcat
+        image: melca/tomcat_green:8.5
+        ports:
+        - containerPort: 8080

@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: canary-tomcat-deploy-v1
+spec:
+  selector:
+    matchLabels:
+      app: canary-pod-v1
+  replicas: 4
+  template:
+    metadata:
+      name: canary-pod-v1
+      labels: 
+        app: canary-pod-v1
+        type: canary-app
+    spec:
+      containers:
+      - name: tomcat
+        image: melca/tomcat_blue:8.5
+        ports:
+        - containerPort: 8080

@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: tomcat-deploy
+  labels:
+    app: tomcat-deploy
+spec:
+  selector:
+    matchLabels:
+      app: tomcat-pod-blue
+  replicas: 2
+  template:
+    metadata:
+      name: tomcat-pod-blue
+      labels: 
+        app: tomcat-pod-blue
+    spec:
+      containers:
+      - name: tomcat
+        image: melca/tomcat_blue:8.5
+        ports:
+        - containerPort: 8080
